@@ -1,0 +1,30 @@
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## User settings
+xcuserdata/
+
+## Xcode 8 and earlier
+*.xcworkspace/xcuserdata/
+
+## Build results
+build/
+DerivedData/
+
+## Non-Apple files
+.DS_Store
+
+## Swift Package Manager
+.build/
+.swiftpm/
+
+## Other
+*.lock
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+*.xccheckout
+*.xcscmblueprint
+*~.nib
