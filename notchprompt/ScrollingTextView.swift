@@ -123,33 +123,33 @@ struct ScrollingTextView: View {
                     viewportHeight = max(viewportProxy.size.height, 0)
                     resetPhase()
                 }
-                .onChange(of: viewportProxy.size.height) { newHeight in
+                .onChange(of: viewportProxy.size.height) { _, newHeight in
                     viewportHeight = max(newHeight, 0)
                     normalizeTopAnchorIfNearStart()
                 }
-                .onChange(of: resetToken) { _ in
+                .onChange(of: resetToken) {
                     resetPhase()
                 }
-                .onChange(of: text) { _ in
+                .onChange(of: text) {
                     resetPhase()
                 }
-                .onChange(of: jumpBackToken) { _ in
+                .onChange(of: jumpBackToken) {
                     guard hasContent else { return }
                     phase = max(phase - max(0, jumpBackDistancePoints), topOfScriptPhaseFloor)
                 }
-                .onChange(of: fontSize) { _ in
+                .onChange(of: fontSize) {
                     normalizeTopAnchorIfNearStart()
                 }
-                .onChange(of: isRunning) { running in
+                .onChange(of: isRunning) {
                     lastTickDate = timeline.date
                 }
-                .onChange(of: isHovering) { hovering in
+                .onChange(of: isHovering) {
                     lastTickDate = timeline.date
                 }
                 .onPreferenceChange(ContentHeightPreferenceKey.self) { measured in
                     contentHeight = max(measured, 1)
                 }
-                .onChange(of: timeline.date) { date in
+                .onChange(of: timeline.date) { _, date in
                     tick(at: date)
                 }
             }
