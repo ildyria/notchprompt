@@ -7,6 +7,14 @@
 A native macOS notch-adjacent teleprompter for presentations and recordings,
 with keyboard and overlay controls designed for low-friction live use.
 
+## At a Glance
+
+- Native macOS menu bar teleprompter.
+- Notch-adjacent floating overlay with live controls.
+- Keyboard-first transport actions (start/pause, reset, jump back).
+- Script persistence plus import/export for plain text.
+- Best-effort privacy mode for screen capture workflows.
+
 ## Quick Demo
 
 > Demo assets below are placeholders. Replace with real captures before public
@@ -81,21 +89,34 @@ transport control behavior in real time.
 
 ## Requirements
 
-- macOS compatible with the current Xcode project deployment target.
-- Xcode 16+ (or equivalent toolchain compatibility for the project settings).
+- macOS version compatible with the current project deployment target in
+  `notchprompt.xcodeproj`.
+- Xcode 16+ (or equivalent Swift toolchain compatibility).
 - Apple Silicon or Intel Mac that supports the target macOS version.
 
-## Run Locally
+## Installation
+
+For non-technical users, install from GitHub Releases:
+
+1. Open the repository's **Releases** page.
+2. Download the latest macOS build artifact (`.dmg` or `.zip`).
+3. Move `Notchprompt.app` to `/Applications`.
+4. Launch Notchprompt.
+
+> Release packaging/signing is in progress. Until public artifacts are posted,
+> use the developer setup below.
+
+## Run from Source
 
 ```bash
-cd /Users/saif/Documents/notchprompt/notchprompt
+git clone https://github.com/saif0200/notchprompt.git
+cd notchprompt
 open notchprompt.xcodeproj
 ```
 
-Or build from CLI:
+Build from CLI:
 
 ```bash
-cd /Users/saif/Documents/notchprompt/notchprompt
 xcodebuild -project notchprompt.xcodeproj -scheme notchprompt -configuration Debug build
 ```
 
@@ -127,6 +148,41 @@ Keyboard shortcuts:
 | `⌥⌘H`    | Toggle Privacy Mode (menu command) |
 | `⌥⌘=`    | Increase speed                     |
 | `⌥⌘-`    | Decrease speed                     |
+
+## Troubleshooting
+
+- If macOS blocks first launch, open `System Settings -> Privacy & Security`
+  and allow the app to run.
+- If overlay behavior looks incorrect after display changes, relaunch the app.
+- If privacy mode does not hide the overlay in recordings, test with another
+  capture app; behavior is capture-app-dependent.
+
+## Release Process
+
+Build a downloadable release zip locally:
+
+```bash
+./scripts/build_release_zip.sh v1.0.0
+```
+
+This creates:
+
+- `dist/notchprompt-v1.0.0-macos.zip`
+
+Create and publish a GitHub release (after `gh auth login`):
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+gh release create v1.0.0 \
+  dist/notchprompt-v1.0.0-macos.zip \
+  --title "Notchprompt v1.0.0" \
+  --notes "First public release."
+```
+
+For future releases, pushing any tag like `v1.0.1` triggers the GitHub Actions
+release workflow in `.github/workflows/release.yml` to build and upload the zip
+artifact automatically.
 
 ## Project Status
 

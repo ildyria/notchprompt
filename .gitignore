@@ -11,6 +11,7 @@ xcuserdata/
 ## Build results
 build/
 DerivedData/
+dist/*.zip
 
 ## Non-Apple files
 .DS_Store

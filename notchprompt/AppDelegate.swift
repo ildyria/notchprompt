@@ -99,17 +99,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 
         let menu = NSMenu()
 
-        let startPause = NSMenuItem(title: "Start/Pause (Opt+Cmd+P)", action: #selector(toggleRunning), keyEquivalent: "s")
+        let startPause = NSMenuItem(title: "Start/Pause (Opt+Cmd+P)", action: #selector(toggleRunning), keyEquivalent: "p")
         startPause.target = self
+        startPause.keyEquivalentModifierMask = [.option, .command]
         menu.addItem(startPause)
         startPauseItem = startPause
 
         let reset = NSMenuItem(title: "Reset Scroll (Opt+Cmd+R)", action: #selector(resetScroll), keyEquivalent: "r")
         reset.target = self
+        reset.keyEquivalentModifierMask = [.option, .command]
         menu.addItem(reset)
 
         let jumpBack = NSMenuItem(title: "Jump Back 5s (Opt+Cmd+J)", action: #selector(jumpBack), keyEquivalent: "j")
         jumpBack.target = self
+        jumpBack.keyEquivalentModifierMask = [.option, .command]
         menu.addItem(jumpBack)
 
         let privacyMode = NSMenuItem(title: "Privacy Mode", action: #selector(togglePrivacyMode), keyEquivalent: "h")
