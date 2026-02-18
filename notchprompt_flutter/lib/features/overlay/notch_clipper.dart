@@ -50,7 +50,7 @@ class NotchClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(NotchClipper old) => false;
+  bool shouldReclip(NotchClipper oldClipper) => false;
 }
 
 // ─── Linux / Windows rounded-bottom bar ──────────────────────────────────────
@@ -78,5 +78,5 @@ class RoundedBottomClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(RoundedBottomClipper old) => old.radius != radius;
+  bool shouldReclip(RoundedBottomClipper oldClipper) => oldClipper.radius != radius;
 }
