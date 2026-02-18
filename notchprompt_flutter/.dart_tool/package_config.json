@@ -653,7 +653,7 @@
       "name": "notchprompt",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.6"
     }
   ],
   "generator": "pub",
