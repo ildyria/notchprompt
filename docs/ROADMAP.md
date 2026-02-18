@@ -6,22 +6,22 @@ before Phase N is complete and tested.
 
 ---
 
-## Phase 0 — Project Bootstrap *(current)*
+## Phase 0 — Project Bootstrap ✅
 
 Goal: empty Flutter desktop app builds and runs on all three platforms.
 
-- [ ] `flutter create notchprompt_flutter --platforms=macos,linux,windows`
-- [ ] Configure `pubspec.yaml` with pinned dependencies
-- [ ] `analysis_options.yaml` — strict lints, no implicit dynamic
-- [ ] CI: GitHub Actions matrix build (macOS, Ubuntu, Windows)
-- [ ] Folder structure per ARCHITECTURE.md
-- [ ] `AGENTS.md`, `CONSTITUTION.md`, `SPEC.md`, `ARCHITECTURE.md` checked in
+- [x] `flutter create notchprompt_flutter --platforms=macos,linux,windows`
+- [x] Configure `pubspec.yaml` with pinned dependencies
+- [x] `analysis_options.yaml` — strict lints, no implicit dynamic
+- [x] CI: GitHub Actions matrix build (macOS, Ubuntu, Windows)
+- [x] Folder structure per ARCHITECTURE.md
+- [x] `AGENTS.md`, `CONSTITUTION.md`, `SPEC.md`, `ARCHITECTURE.md` checked in
 
 **Exit criteria:** `flutter build macos` / `linux` / `windows` produce artifacts with zero warnings.
 
 ---
 
-## Phase 1 — Core State & Logic (no UI)
+## Phase 1 — Core State & Logic (no UI) *(current)*
 
 Goal: all business logic exists and is tested, zero UI.
 
