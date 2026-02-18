@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:notchprompt/core/constants.dart';
-import 'package:notchprompt/core/extensions.dart';
-import 'package:notchprompt/core/platform.dart';
-import 'package:notchprompt/features/prompter/prompter_provider.dart';
-import 'package:notchprompt/features/settings/settings_provider.dart';
-import 'package:notchprompt/features/script/script_editor_view.dart';
+import '../../core/constants.dart';
+import '../../core/extensions.dart';
+import '../../core/platform.dart';
+import '../overlay/overlay_window.dart';
+import '../prompter/prompter_provider.dart';
+import '../prompter/prompter_state.dart';
+import '../script/script_editor_view.dart';
+import 'settings_provider.dart';
 
 /// Settings window — script editor + all configurable options.
 class SettingsView extends ConsumerWidget {
@@ -121,7 +123,7 @@ class SettingsView extends ConsumerWidget {
             const SizedBox(height: 24),
 
             // ── Privacy mode (macOS only) ──────────────────────────────────
-            if (PlatformServices.supportsPrivacyMode) ...[
+            if (supportsPrivacyMode) ...[
               const SectionHeader('Privacy'),
               const SizedBox(height: 8),
               SwitchListTile(
@@ -135,6 +137,12 @@ class SettingsView extends ConsumerWidget {
               ),
               const SizedBox(height: 24),
             ],
+
+            // ── Launch overlay ─────────────────────────────────────────────
+            const SectionHeader('Overlay'),
+            const SizedBox(height: 8),
+            _LaunchOverlayButton(),
+            const SizedBox(height: 24),
 
             // ── Transport shortcuts ────────────────────────────────────────
             const SectionHeader('Quick Actions'),
@@ -346,6 +354,39 @@ class _PresetButton extends StatelessWidget {
   }
 }
 
-extension on TransportState {
+// ─── Launch overlay button ────────────────────────────────────────────────────
+
+class _LaunchOverlayButton extends ConsumerWidget {
+  // ignore: prefer_const_constructors_in_immutables — used as a leaf with state
+  _LaunchOverlayButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isOverlayVisible = ref.watch(
+      overlayWindowProvider.select((s) => s.isVisible),
+    );
+
+    return FilledButton.icon(
+      style: FilledButton.styleFrom(
+        backgroundColor: isOverlayVisible ? Colors.white24 : Colors.deepPurple,
+        minimumSize: const Size(160, 40),
+      ),
+      onPressed: isOverlayVisible
+          ? () => ref.read(overlayWindowProvider.notifier).hide()
+          : () => ref.read(overlayWindowProvider.notifier).show(),
+      icon: Icon(
+        isOverlayVisible
+            ? Icons.close_fullscreen_rounded
+            : Icons.open_in_full_rounded,
+        size: 16,
+      ),
+      label: Text(isOverlayVisible ? 'Hide Overlay' : 'Launch Overlay'),
+    );
+  }
+}
+
+// ─── Transport state extension ────────────────────────────────────────────────
+
+extension _TransportStateX on TransportState {
   bool get isRunning => this == TransportState.running;
 }

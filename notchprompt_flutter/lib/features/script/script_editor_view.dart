@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
 
-import 'package:notchprompt/features/script/script_file_io.dart';
+import 'script_file_io.dart';
 
 /// Plain-text script editor widget with import/export toolbar.
 class ScriptEditorView extends StatefulWidget {
   const ScriptEditorView({
-    super.key,
     required this.initialText,
     required this.onChanged,
+    super.key,
   });
 
   final String initialText;
@@ -50,11 +49,11 @@ class _ScriptEditorViewState extends State<ScriptEditorView> {
 
   Future<void> _importScript() async {
     try {
-      final text = await ScriptFileIO.importText();
+      final text = await importScriptText();
       if (text == null) return;
       _controller.text = text;
       widget.onChanged(text);
-    } catch (e) {
+    } on Exception catch (e) {
       if (!mounted) return;
       _showError(e.toString());
     }
@@ -62,8 +61,8 @@ class _ScriptEditorViewState extends State<ScriptEditorView> {
 
   Future<void> _exportScript() async {
     try {
-      await ScriptFileIO.exportText(_controller.text);
-    } catch (e) {
+      await exportScriptText(_controller.text);
+    } on Exception catch (e) {
       if (!mounted) return;
       _showError(e.toString());
     }

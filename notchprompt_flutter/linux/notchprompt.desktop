@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Notchprompt
+Comment=Desktop teleprompter that lives in the system tray
+Exec=notchprompt
+Icon=notchprompt
+Type=Application
+Terminal=false
+Categories=Utility;
+Keywords=teleprompter;prompter;script;
+StartupNotify=false

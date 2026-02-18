@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:notchprompt/core/constants.dart';
-import 'package:notchprompt/core/extensions.dart';
-import 'package:notchprompt/features/settings/settings_state.dart';
+import '../../core/constants.dart';
+import '../../core/extensions.dart';
+import 'settings_state.dart';
 
 // ─── SharedPreferences key names ─────────────────────────────────────────────
 

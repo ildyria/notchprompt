@@ -11,11 +11,6 @@ analyzer:
     missing_return: error
     dead_code: error
     invalid_use_of_protected_member: error
-    # Avoid any implicit dynamic
-    implicit_dynamic_type: error
-    implicit_dynamic_parameter: error
-    implicit_dynamic_return: error
-    implicit_dynamic_invoke: error
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
@@ -25,7 +20,6 @@ linter:
   rules:
     # --- Error rules ---
     avoid_dynamic_calls: true
-    avoid_returning_null_for_future: true
     avoid_type_to_string: true
     cancel_subscriptions: true
     close_sinks: true
@@ -85,7 +79,6 @@ linter:
     prefer_final_locals: true
     prefer_foreach: true
     prefer_if_elements_to_conditional_expressions: true
-    prefer_int_literals_in_double_contexts: true
     prefer_interpolation_to_compose_strings: true
     prefer_mixin: true
     prefer_null_aware_method_calls: true

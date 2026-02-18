@@ -93,7 +93,7 @@ class PrompterNotifier extends StateNotifier<PrompterState> {
     while (remaining > 0) {
       try {
         await Future<void>.delayed(const Duration(seconds: 1));
-      } catch (_) {
+      } on Exception catch (_) {
         // Task cancelled — cleanup handled in stop/reset.
         return;
       }

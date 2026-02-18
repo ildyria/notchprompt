@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:notchprompt/features/settings/settings_notifier.dart';
-import 'package:notchprompt/features/settings/settings_state.dart';
+import 'settings_notifier.dart';
+import 'settings_state.dart';
 
 /// Provides the [SharedPreferences] instance.
 /// Override in tests with a [ProviderContainer] override.
